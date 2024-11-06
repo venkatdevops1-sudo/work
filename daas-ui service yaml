@@ -7,7 +7,10 @@ metadata:
     app: command-center
     component: daas-ui
     tier: UI
+  annotations:
+    service.beta.kubernetes.io/azure-load-balancer-internal: "true"  # Internal load balancer annotation
 spec:
+  type: LoadBalancer  # Changed to LoadBalancer
   ports:
     - protocol: TCP
       port: 80
@@ -16,14 +19,8 @@ spec:
     app: command-center
     component: daas-ui
     tier: UI
-  clusterIP: 10.0.136.194
-  clusterIPs:
-    - 10.0.136.194
-  type: ClusterIP
   sessionAffinity: None
   ipFamilies:
     - IPv4
   ipFamilyPolicy: SingleStack
   internalTrafficPolicy: Cluster
-status:
-  loadBalancer: {}
