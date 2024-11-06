@@ -1,0 +1,26 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: ct-ui-service
+  namespace: command-center
+  labels:
+    app: command-center
+    component: ct-ui
+    tier: UI
+  annotations:
+    service.beta.kubernetes.io/azure-load-balancer-internal: "true"  # Internal load balancer annotation
+spec:
+  type: LoadBalancer  # Change the type to LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  selector:
+    app: command-center
+    component: ct-ui
+    tier: UI
+  sessionAffinity: None
+  ipFamilies:
+    - IPv4
+  ipFamilyPolicy: SingleStack
+  internalTrafficPolicy: Cluster
