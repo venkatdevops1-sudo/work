@@ -8,10 +8,10 @@ metadata:
     component: ct-api
     tier: api
   annotations:
-    service.beta.kubernetes.io/azure-load-balancer-internal: "true"  # This annotation makes it an internal load balancer
+    service.beta.kubernetes.io/azure-load-balancer-internal: "true"  # Internal load balancer annotation
 spec:
-  type: LoadBalancer  # Change the type to LoadBalancer to create an external IP
-  loadBalancerIP: 172.16.113.196  # Static IP within your VNet range for stability
+  type: LoadBalancer
+  loadBalancerIP: 172.16.160.10  # Static IP within the Application Gateway subnet range
   ports:
     - protocol: TCP
       port: 80
