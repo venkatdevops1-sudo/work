@@ -3,49 +3,15 @@ apiVersion: v1
 metadata:
   name: ct-api-service
   namespace: command-center
-  uid: 70e3ac76-e891-4181-9fc1-bed59362c781
-  resourceVersion: '8619879'
-  creationTimestamp: '2024-10-16T19:11:35Z'
   labels:
     app: command-center
     component: ct-api
     tier: api
-  managedFields:
-    - manager: cloud-controller-manager
-      operation: Update
-      apiVersion: v1
-      time: '2024-11-04T12:44:11Z'
-      fieldsType: FieldsV1
-      fieldsV1:
-        f:status:
-          f:loadBalancer:
-            f:ingress: {}
-      subresource: status
-    - manager: Mozilla
-      operation: Update
-      apiVersion: v1
-      time: '2024-11-04T12:49:59Z'
-      fieldsType: FieldsV1
-      fieldsV1:
-        f:metadata:
-          f:labels:
-            .: {}
-            f:app: {}
-            f:component: {}
-            f:tier: {}
-        f:spec:
-          f:internalTrafficPolicy: {}
-          f:ports:
-            .: {}
-            k:{"port":80,"protocol":"TCP"}:
-              .: {}
-              f:port: {}
-              f:protocol: {}
-              f:targetPort: {}
-          f:selector: {}
-          f:sessionAffinity: {}
-          f:type: {}
+  annotations:
+    service.beta.kubernetes.io/azure-load-balancer-internal: "true"  # This annotation makes it an internal load balancer
 spec:
+  type: LoadBalancer  # Change the type to LoadBalancer to create an external IP
+  loadBalancerIP: 172.16.113.196  # Static IP within your VNet range for stability
   ports:
     - protocol: TCP
       port: 80
@@ -54,16 +20,8 @@ spec:
     app: command-center
     component: ct-api
     tier: api
-  clusterIP: 10.0.236.250
-  clusterIPs:
-    - 10.0.236.250
-  type: ClusterIP
   sessionAffinity: None
   ipFamilies:
     - IPv4
   ipFamilyPolicy: SingleStack
   internalTrafficPolicy: Cluster
-status:
-  loadBalancer: {}
-
-172.16.113.196
