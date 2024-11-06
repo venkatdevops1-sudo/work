@@ -1,0 +1,29 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: ct-ui-service
+  namespace: command-center
+  labels:
+    app: command-center
+    component: ct-ui
+    tier: UI
+spec:
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  selector:
+    app: command-center
+    component: ct-ui
+    tier: UI
+  clusterIP: 10.0.140.138
+  clusterIPs:
+    - 10.0.140.138
+  type: ClusterIP
+  sessionAffinity: None
+  ipFamilies:
+    - IPv4
+  ipFamilyPolicy: SingleStack
+  internalTrafficPolicy: Cluster
+status:
+  loadBalancer: {}
