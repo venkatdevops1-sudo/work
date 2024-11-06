@@ -1,0 +1,51 @@
+kind: Ingress
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: daas-api-ingress
+  namespace: command-center
+  uid: c1320f60-8bd9-468c-94cc-c7c0e543500a
+  resourceVersion: '5565983'
+  generation: 1
+  creationTimestamp: '2024-10-28T18:48:38Z'
+  annotations:
+    appgw.ingress.kubernetes.io/use-private-ip: 'true'
+    cert-manager.io/cluster-issuer: letsencrypt
+    kubernetes.io/ingress.class: azure/application-gateway
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    nginx.ingress.kubernetes.io/use-regex: 'true'
+  managedFields:
+    - manager: Mozilla
+      operation: Update
+      apiVersion: networking.k8s.io/v1
+      time: '2024-10-28T18:48:38Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:metadata:
+          f:annotations:
+            .: {}
+            f:appgw.ingress.kubernetes.io/use-private-ip: {}
+            f:cert-manager.io/cluster-issuer: {}
+            f:kubernetes.io/ingress.class: {}
+            f:nginx.ingress.kubernetes.io/rewrite-target: {}
+            f:nginx.ingress.kubernetes.io/use-regex: {}
+        f:spec:
+          f:rules: {}
+          f:tls: {}
+spec:
+  tls:
+    - hosts:
+        - command-center.bigindiahub.coke.com
+      secretName: tls-secrets
+  rules:
+    - host: command-center.bigindiahub.coke.com
+      http:
+        paths:
+          - path: /daas-api(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: daas-api-service
+                port:
+                  number: 80
+status:
+  loadBalancer: {}
