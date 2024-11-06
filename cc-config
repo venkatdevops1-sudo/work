@@ -1,0 +1,24 @@
+venkatesh [ ~ ]$ kubectl get configmap cc-config -n command-center -o yaml
+apiVersion: v1
+data:
+  Auth__Audiences__0: api://c052b66c-0334-4a02-bdc7-a8b601aeb2cb
+  Auth__Authority: https://login.microsoftonline.com/16f5f358-437f-4d93-875b-01c41113fcf4/
+  Auth__ClientId: c052b66c-0334-4a02-bdc7-a8b601aeb2cb
+  Auth__Issuers__0: https://sts.windows.net/16f5f358-437f-4d93-875b-01c41113fcf4/
+  Auth__Protocol: JWT
+  Auth__Provider: EntraID
+  Auth__TenantId: 16f5f358-437f-4d93-875b-01c41113fcf4
+  REACT_APP_CC_GENAI_API_BASE_URL: https://command-center.bigindiahub.coke.com/genai/api/genai/prompt/
+  REACT_APP_CT_API_BASE_URL: https://command-center.bigindiahub.coke.com/ct-api/api/v1/
+  REACT_APP_DAAS_API_BASE_URL: https://command-center.bigindiahub.coke.com/daas-api/api/v1
+  REACT_APP_GIT_HUB_CONFIG_DATA_MODEL_ID: 68894186-753D-4003-97AD-53F876E07EAC
+kind: ConfigMap
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","data":{"Auth__Audiences__0":"api://c052b66c-0334-4a02-bdc7-a8b601aeb2cb","Auth__Authority":"https://login.microsoftonline.com/16f5f358-437f-4d93-875b-01c41113fcf4/","Auth__ClientId":"c052b66c-0334-4a02-bdc7-a8b601aeb2cb","Auth__Issuers__0":"https://sts.windows.net/16f5f358-437f-4d93-875b-01c41113fcf4/","Auth__Protocol":"JWT","Auth__Provider":"EntraID","Auth__TenantId":"16f5f358-437f-4d93-875b-01c41113fcf4","REACT_APP_CC_GENAI_API_BASE_URL":"https://command-center.bigindiahub.coke.com/genai/api/genai/prompt/","REACT_APP_CT_API_BASE_URL":"https://command-center.bigindiahub.coke.com/ct-api/api/v1/","REACT_APP_DAAS_API_BASE_URL":"https://command-center.bigindiahub.coke.com/daas-api/api/v1","REACT_APP_GIT_HUB_CONFIG_DATA_MODEL_ID":"68894186-753D-4003-97AD-53F876E07EAC"},"kind":"ConfigMap","metadata":{"annotations":{},"name":"cc-config","namespace":"command-center"}}
+  creationTimestamp: "2024-08-27T09:02:00Z"
+  name: cc-config
+  namespace: command-center
+  resourceVersion: "46752955"
+  uid: db203bff-2c23-4af6-8576-729dfe430b02
