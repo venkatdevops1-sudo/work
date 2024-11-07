@@ -1,0 +1,27 @@
+kind: Ingress
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: rca-ingress
+  namespace: rca-framework
+  annotations:
+    appgw.ingress.kubernetes.io/use-private-ip: 'true'
+    cert-manager.io/cluster-issuer: letsencrypt
+    kubernetes.io/ingress.class: azure/application-gateway
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    nginx.ingress.kubernetes.io/use-regex: 'true'
+spec:
+  tls:
+    - hosts:
+        - command-center.bigindiahub.coke.com
+      secretName: tls-secrets
+  rules:
+    - host: command-center.bigindiahub.coke.com
+      http:
+        paths:
+          - path: /rca(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: rca-service
+                port:
+                  number: 80
