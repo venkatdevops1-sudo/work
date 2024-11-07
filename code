@@ -1,0 +1,35 @@
+/mnt/data/image.jpg
+
+*** Settings ***
+Library    RequestsLibrary
+Library    JSONLibrary
+Library    Collections
+Library    String
+
+*** Variables ***
+${API_URL}        https://your-api-endpoint-url.com
+${AUTH_TOKEN}     YOUR_AUTH_TOKEN_HERE
+
+*** Test Cases ***
+Validate Uptime And SCOM Agent Status
+    [Documentation]    Test to validate the Uptime is more than 30 minutes and SCOM Agent status is running.
+    Create Session    api_session    ${API_URL}    headers=Authorization=Bearer ${AUTH_TOKEN}    verify=False
+
+    ${response}    GET    api_session    /path/to/endpoint
+    Should Be Equal As Strings    ${response.status_code}    200
+
+    Log    Response: ${response.content}
+    ${json_data}    To JSON    ${response.content}
+
+    # Check Uptime
+    ${uptime}    Get Value From JSON    ${json_data}    uptime
+    Log    Uptime: ${uptime}
+    ${uptime_in_minutes}    Evaluate    int(${uptime}.replace(' minutes', '').replace(' minute', ''))
+    Run Keyword If    ${uptime_in_minutes} <= 30    Fail    Uptime is not more than 30 minutes
+
+    # Check SCOM Agent status
+    ${scom_status}    Get Value From JSON    ${json_data}    scom_agent_status
+    Log    SCOM Agent Status: ${scom_status}
+    Should Be Equal As Strings    ${scom_status}    running
+
+    [Teardown]    Delete All Sessions
