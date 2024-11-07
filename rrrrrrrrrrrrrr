@@ -1,0 +1,2 @@
+kubectl exec -it ct-api-55c6d568cc-gr2sx -n command-center -- /bin/bash
+curl http://localhost:8080
