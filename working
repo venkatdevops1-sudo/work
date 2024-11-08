@@ -1,0 +1,27 @@
+*** Settings ***
+Library         RequestsLibrary
+Library         Collections
+Library         JSONLibrary
+Library         String
+Library         OperatingSystem
+Variables       ../config/app_config.yaml
+
+*** Test Cases ***
+Test Windows API Call
+    windows API call
+
+*** Keywords ***
+windows API call
+    ${headers}=    create dictionary    Authorization=    Basic ${windows_auth_token_pass}    Content-Type=application/json    verify=false
+    create session    sessionId    ${windows_base_url}    headers=${headers}    verify=false
+    
+    ${data}=    Create dictionary    hosts=GBW20135385.example.com
+    
+    ${response}=    POST On Session    sessionId    ${windows_base_url}    json=${data}    expected_status=any
+    
+    ${output_file}=    ../responses/response_output.json
+    ${json_string}=    Convert To String    ${response.json()}
+    Create File    ${output_file}    ${json_string}
+    log to console    "Response saved to JSON file: ${output_file}"
+
+    return from keyword    ${response.json()}
