@@ -25,3 +25,8 @@ windows API call
     log to console    "Response saved to JSON file: ${output_file}"
 
     return from keyword    ${response.json()}
+
+
+
+[Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes("your-value"))
+
