@@ -11,3 +11,7 @@ puppet API call
     log to console    "Response saved to JSON file: ${output_file}"
 
     return from keyword    ${response.json()}
+
+
+robot --outputdir Z:\pipeline_functional_testing_windows\Reports Resources\windows.robot
+
