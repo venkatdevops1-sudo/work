@@ -1,0 +1,63 @@
+kind: Ingress
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: ct-api-ingress
+  namespace: command-center
+  uid: fc69cc6c-2071-44d6-a641-0473907776b1
+  resourceVersion: '8620232'
+  generation: 1
+  creationTimestamp: '2024-11-04T12:51:14Z'
+  annotations:
+    appgw.ingress.kubernetes.io/backend-path-prefix: /ct-api
+    appgw.ingress.kubernetes.io/health-probe-path: /health
+    appgw.ingress.kubernetes.io/request-timeout: '30'
+    appgw.ingress.kubernetes.io/ssl-redirect: 'true'
+    appgw.ingress.kubernetes.io/use-private-ip: 'true'
+    kubernetes.io/ingress.class: azure/application-gateway
+  managedFields:
+    - manager: appgw-ingress
+      operation: Update
+      apiVersion: networking.k8s.io/v1
+      time: '2024-10-22T06:51:33Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:status:
+          f:loadBalancer:
+            f:ingress: {}
+      subresource: status
+    - manager: Mozilla
+      operation: Update
+      apiVersion: networking.k8s.io/v1
+      time: '2024-11-04T12:51:14Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:metadata:
+          f:annotations:
+            .: {}
+            f:appgw.ingress.kubernetes.io/backend-path-prefix: {}
+            f:appgw.ingress.kubernetes.io/health-probe-path: {}
+            f:appgw.ingress.kubernetes.io/request-timeout: {}
+            f:appgw.ingress.kubernetes.io/ssl-redirect: {}
+            f:appgw.ingress.kubernetes.io/use-private-ip: {}
+            f:kubernetes.io/ingress.class: {}
+        f:spec:
+          f:rules: {}
+          f:tls: {}
+spec:
+  tls:
+    - hosts:
+        - command-center.bigindiahub.coke.com
+      secretName: tls-secrets
+  rules:
+    - host: command-center.bigindiahub.coke.com
+      http:
+        paths:
+          - path: /ct-api(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: ct-api-service
+                port:
+                  number: 80
+status:
+  loadBalancer: {}
