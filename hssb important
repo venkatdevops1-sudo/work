@@ -1,0 +1,119 @@
+*** Keywords ***
+windows os healthcheck API call
+    [Arguments]    ${postBody}
+    ${headers}=    Create Dictionary    Authorization=Basic ${sos_hc_auth_token_pass}    Content-Type=application/json
+    Create Session    sessionId    ${sos_hc_base_url}    headers=${headers}    verify=False
+    ${params_dict}=    Create Dictionary    serverName=GBW20135385
+
+    ${response}=    POST On Session    sessionId    /itid-pa-os-health-check/api/v1/os-health-check-request    json=${params_dict}    expected_status=any
+    ${uptime_string}=    Get From Response    ${response}    healthCheckStatus.windows_server_status.uptime
+
+    # Convert uptime string into total minutes
+    ${days}=    Evaluate    int('${uptime_string}'.split(' ')[0])
+    ${hours}=   Evaluate    int('${uptime_string}'.split(':')[0].split(' ')[1])
+    ${minutes}= Evaluate    int('${uptime_string}'.split(':')[1])
+    ${total_minutes}=    Evaluate    ${days} * 1440 + ${hours} * 60 + ${minutes}
+
+    Log To Console    Total uptime in minutes: ${total_minutes}
+    Return From Keyword    ${total_minutes}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*** Settings ***
+Resource    win_os_hc.robot
+Resource    es_portal_api.robot
+
+*** Test Cases ***
+Check Windows OS Health and Trigger ES Portal API
+    # Call the win_os_hc.robot file to get uptime in minutes
+    ${total_minutes}=    windows os healthcheck API call    ${postBody}
+
+    # Check if uptime is less than 30 minutes
+    IF    ${total_minutes} < 30
+        Log To Console    Uptime is less than 30 minutes. Triggering ES Portal API...
+        Run Keyword    es portal api call    ${postBody}
+    ELSE
+        Log To Console    Uptime is sufficient. No further action required.
+    END
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*** Keywords ***
+es portal api call
+    [Arguments]    ${postBody}
+    ${headers}=    Create Dictionary    Authorization=Basic ${es_api_auth_token_pass}    Content-Type=application/json
+    Create Session    sessionId    ${es_api_base_url}    headers=${headers}    verify=False
+
+    # Call the ES portal API endpoint
+    ${response}=    POST On Session    sessionId    /es-portal-api/v1/some-endpoint    json=${postBody}    expected_status=any
+
+    Log To Console    ES Portal API Response: ${response.json()}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
