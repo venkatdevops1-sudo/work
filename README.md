@@ -13,3 +13,5 @@ helm uninstall aks-managed-azure-monitor-metrics -n kube-system
 
 helm list -n kube-system
 
+az aks show --name kub-dev-scm --resource-group rg-dev-SupplyChaincontroltower --query addonProfiles.omsagent
+
