@@ -15,3 +15,5 @@ helm list -n kube-system
 
 az aks show --name kub-dev-scm --resource-group rg-dev-SupplyChaincontroltower --query addonProfiles.omsagent
 
+az aks start --name kub-dev-scm --resource-group rg-dev-SupplyChaincontroltower
+
