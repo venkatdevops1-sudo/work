@@ -19,3 +19,5 @@ az aks start --name kub-dev-scm --resource-group rg-dev-SupplyChaincontroltower
 
 az network private-endpoint show --name <private-endpoint-name> --resource-group rg-dev-SupplyChaincontroltower
 
+az resource update --name kub-dev-scm --namespace Microsoft.ContainerService  --resource-group rg-dev-SupplyChaincontroltower --resource-type ManagedClusters  --subscription xxxxx
+
