@@ -34,3 +34,14 @@ securityresources
 
 
 sha256:f916c4f2e917f0ca3a4789b181ab8f58529cc50ed1c2379272dfc26ed057afe9
+
+
+
+
+
+
+
+
+
+az acr manifest show-metadata -r 'devscmct.azurecr.io' -n 'rca-web-service' | grep -B 8 -A 5 '"digest": "<Image SHAID/Digest>"
+Example: az acr manifest show-metadata -r 'registrywallah.azurecr.io' -n 'mdcalc/logcollector' | grep -B 8 -A 5 '"digest": "sha256:d3249fc86993b342b680c87d86f9ff91a2cbe9e9873ce15ce6ec54bd495b1adf"'
