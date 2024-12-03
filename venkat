@@ -27,3 +27,10 @@ securityresources
         | extend cause = trim(" ", tostring(properties.status.cause))
         | extend assessmentKey = tostring(name)
         | where assessmentKey == "33422d8f-ab1e-42be-bc9a-38685bb567b9"
+
+
+
+
+
+
+sha256:f916c4f2e917f0ca3a4789b181ab8f58529cc50ed1c2379272dfc26ed057afe9
