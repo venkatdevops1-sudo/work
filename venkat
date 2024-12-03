@@ -1,0 +1,9 @@
+{
+    "resourceDetails": {
+        "ResourceProvider": "acr",
+        "ResourceName": "rca-web-service",
+        "ResourceType": "acr.containerimage",
+        "NativeResourceId": "/subscriptions/6417fd2b-e5bc-414b-a04d-60da387d282f/resourceGroups/rg-dev-SupplyChaincontroltower/providers/Microsoft.ContainerRegistry/registries/devscmct/securityentitydata/repositories-rca-web-service-images-sha256:011e8f1dd512714fe7be0599703cf260c7fc996dd613f003e7a1b6d277d8005c",
+        "ResourceId": "/subscriptions/6417fd2b-e5bc-414b-a04d-60da387d282f/resourceGroups/rg-dev-SupplyChaincontroltower/providers/Microsoft.ContainerRegistry/registries/devscmct/securityentitydata/repositories-rca-web-service-images-sha256:011e8f1dd512714fe7be0599703cf260c7fc996dd613f003e7a1b6d277d8005c",
+        "Source": "Azure",
+        "Id": "/subscriptions/6417fd2b-e5bc-414b-a04d-60da387d282f/resourceGroups/rg-dev-SupplyChaincontroltower/providers/Microsoft.ContainerRegistry/registries/devscmct/securityentitydata/repositories-rca-web-service-images-sha256:011e8f1dd512714fe7be0599703cf260c7fc996dd613f003e7a1b6d277d8005c"
