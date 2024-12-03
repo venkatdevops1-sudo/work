@@ -7,3 +7,23 @@
         "ResourceId": "/subscriptions/6417fd2b-e5bc-414b-a04d-60da387d282f/resourceGroups/rg-dev-SupplyChaincontroltower/providers/Microsoft.ContainerRegistry/registries/devscmct/securityentitydata/repositories-rca-web-service-images-sha256:011e8f1dd512714fe7be0599703cf260c7fc996dd613f003e7a1b6d277d8005c",
         "Source": "Azure",
         "Id": "/subscriptions/6417fd2b-e5bc-414b-a04d-60da387d282f/resourceGroups/rg-dev-SupplyChaincontroltower/providers/Microsoft.ContainerRegistry/registries/devscmct/securityentitydata/repositories-rca-web-service-images-sha256:011e8f1dd512714fe7be0599703cf260c7fc996dd613f003e7a1b6d277d8005c"
+
+
+
+
+
+securityresources
+        | where type == "microsoft.security/assessments"
+        | extend source = trim(' ', tolower(tostring(properties.resourceDetails.Source)))
+                                          | extend resourceId = trim(' ', tolower(tostring(case(
+                                                                                    source =~ "azure", properties.resourceDetails.Id,
+                                                                                    source =~ "aws" and isnotempty(tostring(properties.resourceDetails.ConnectorId)), properties.resourceDetails.Id,
+                                                                                    source =~ "gcp" and isnotempty(tostring(properties.resourceDetails.ConnectorId)), properties.resourceDetails.Id,
+                                                                                    source =~ 'aws', properties.resourceDetails.AzureResourceId,
+                                                                                    source =~ 'gcp', properties.resourceDetails.AzureResourceId,
+                                                                                    extract('^(.+)/providers/Microsoft.Security/assessments/.+$',1,id)
+                                                                                    ))))
+        | extend status = trim(" ", tostring(properties.status.code))
+        | extend cause = trim(" ", tostring(properties.status.cause))
+        | extend assessmentKey = tostring(name)
+        | where assessmentKey == "33422d8f-ab1e-42be-bc9a-38685bb567b9"
