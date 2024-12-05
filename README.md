@@ -25,4 +25,7 @@ az resource update --name kub-dev-scm --namespace Microsoft.ContainerService  --
 rg-dev-SupplyChaincontroltowerVCdxtji5wFYsoYPobSjNESu+ofMO1x4Z69uWygoDOW+ACRDeeQJa
 
 
+kubectl create secret docker-registry dfdpcred --docker-server=dfdpacr.azurecr.io --docker-username=dfdpacr --docker-password= --docker-email=venkatesh.p@syrencloud.com
+
+
 
