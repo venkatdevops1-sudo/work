@@ -22,5 +22,5 @@ az network private-endpoint show --name <private-endpoint-name> --resource-group
 az resource update --name kub-dev-scm --namespace Microsoft.ContainerService  --resource-group rg-dev-SupplyChaincontroltower --resource-type ManagedClusters  --subscription 6417fd2b-e5bc-414b-a04d-60da387d282f
 
 6417fd2b-e5bc-414b-a04d-60da387d282f
-rg-dev-SupplyChaincontroltowerrkqD2J8Wbfie2iR7QZm4zXKvVrLFx6cDafst+3PgQg+ACRDDFTbH
+rg-dev-SupplyChaincontroltower838W61fvdIt3st47+dx+X8gcQeIEQsKTEM4q8EIN1K+ACRDlHu3r
 
