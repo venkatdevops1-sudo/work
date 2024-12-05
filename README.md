@@ -9,7 +9,7 @@ grafana-20240917170403
 
 sha256:f916c4f2e917f0ca3a4789b181ab8f58529cc50ed1c2379272dfc26ed057afe9
 
-helm uninstall aks-managed-azure-monitor-metrics -n kube-system
+helm uninstall aks-managed-azure-monitor-metrics -n kube-systemrkqD2J8Wbfie2iR7QZm4zXKvVrLFx6cDafst+3PgQg+ACRDDFTbH
 
 helm list -n kube-system
 
