@@ -1,3 +1,5 @@
 kubectl run busybox -it --rm --image=busybox -- /bin/sh -c "nslookup devscmct.azurecr.io"
 
+nslookup devscmct.azurecr.io 172.16.130.40
+
 kubectl debug node/aks-agentsmall-25297734-vmss000006 -it --image=mcr.microsoft.com/cbl-mariner/busybox:2.0
