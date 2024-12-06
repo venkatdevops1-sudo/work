@@ -1,5 +1,19 @@
 kubectl run busybox -it --rm --image=busybox -- /bin/sh -c "nslookup devscmct.azurecr.io"
 
+Step 1. Cordon the existing nodes
+ 
+kubectl cordon aks-agentdefault-22381289-vmss00000b
+ 
+Step 2. Scale a new node in the node pool
+ 
+Step 3. Delete the application pod
+kubectl delete pod/<POD_NAME> -n <NAMESPACE>
+ 
+or
+ 
+kubectl scale --replicas=1 deployment/<DEPLOY_NAME>
+kubectl scale --replicas=2 deployment/<DEPLOY_NAME>
+
 crictl -h
 
 crictl rmi --prune
