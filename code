@@ -1,5 +1,7 @@
 kubectl run busybox -it --rm --image=busybox -- /bin/sh -c "nslookup devscmct.azurecr.io"
 
+az aks nodepool delete-machines --resource-group rg-dev-SupplyChaincontroltower --cluster-name kub-dev-scm --name agent-default --machine-names <vm-name-1>
+
 kubectl drain aks-agentdefault-22381289-vmss00000b --ignore-daemonsets --delete-emptydir-data
 
 kubectl describe node/aks-agentdefault-22381289-vmss00000b
