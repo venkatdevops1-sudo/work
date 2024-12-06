@@ -1,5 +1,7 @@
 kubectl run busybox -it --rm --image=busybox -- /bin/sh -c "nslookup devscmct.azurecr.io"
 
+nc -vz devscmct.azurecr.io 443
+
 nslookup devscmct.azurecr.io 172.16.130.40
 
 nslookup devscmct.azurecr.io 168.63.129.16
