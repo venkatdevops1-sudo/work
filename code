@@ -2,6 +2,8 @@ kubectl run busybox -it --rm --image=busybox -- /bin/sh -c "nslookup devscmct.az
 
 kubectl drain aks-agentdefault-22381289-vmss00000b --ignore-daemonsets --delete-emptydir-data
 
+kubectl describe node/aks-agentdefault-22381289-vmss00000b
+
 Step 1. Cordon the existing nodes
  
 kubectl cordon aks-agentdefault-22381289-vmss00000b
