@@ -11,3 +11,5 @@ nslookup devscmct.azurecr.io 168.63.129.16
 kubectl debug node/aks-agentsmall-25297734-vmss000006 -it --image=mcr.microsoft.com/cbl-mariner/busybox:2.0
 
 ctr images pull devscmct.azurecr.io/ct-ui-updated:v104 --skip-verify --http-trace
+
+kubectl debug node/aks-agentdefault-22381289-vmss00000c -it --image=mcr.microsoft.com/cbl-mariner/busybox:2.0
